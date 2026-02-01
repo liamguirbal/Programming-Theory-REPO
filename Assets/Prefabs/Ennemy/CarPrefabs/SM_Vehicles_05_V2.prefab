@@ -639,4 +639,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarEnnemy
   speed: 0
-  lifeTime: 10
+  lifeTime: 3

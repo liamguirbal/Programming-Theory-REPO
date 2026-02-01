@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarEnnemy
   speed: 0
-  lifeTime: 10
+  lifeTime: 3
 --- !u!1 &3287192372883912762
 GameObject:
   m_ObjectHideFlags: 0
