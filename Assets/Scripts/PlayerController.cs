@@ -103,4 +103,67 @@ public class PlayerController : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+<<<<<<< Updated upstream
 }
+=======
+
+    /// <summary>
+    /// Alternative avec OnTriggerEnter si vous utilisez des colliders en Trigger
+    /// </summary>
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ennemi"))
+        {
+            HandleDeath();
+        }
+    }
+
+    /// <summary>
+    /// Gère la mort du joueur
+    /// </summary>
+    void HandleDeath()
+    {
+        if (deathParticles != null)
+        {
+            GameObject effect = Instantiate(deathParticles, transform.position, Quaternion.identity);
+            Destroy(effect, 2f);
+        }
+
+        Debug.Log("Le joueur a été touché !");
+        gameObject.SetActive(false);
+
+       
+
+                // Déclencher le Game Over
+                if (GameOverManager.Instance != null)
+                {
+                    GameOverManager.Instance.ShowGameOver();
+                }
+            
+        
+
+    }
+
+    /// <summary>
+    /// Visualisation de la grille dans l'éditeur (optionnel)
+    /// </summary>
+    private void OnDrawGizmos()
+    {
+        // Dessiner un cercle à la position cible quand en mouvement
+        if (isMoving)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(targetPosition, 0.3f);
+        }
+
+        // Dessiner la position actuelle sur la grille
+        Gizmos.color = Color.blue;
+        Vector3 snappedPos = new Vector3(
+            Mathf.Round(transform.position.x),
+            transform.position.y,
+            Mathf.Round(transform.position.z)
+        );
+        Gizmos.DrawWireCube(snappedPos, Vector3.one * 0.9f);
+    }
+}
+>>>>>>> Stashed changes
