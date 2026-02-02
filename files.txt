@@ -1,0 +1,283 @@
+commit f7751c170d136804c6eb89e5d8999e57a272668b
+Author: liamguirbal <liamguirbal@gmail.com>
+Date:   Mon Feb 2 11:21:11 2026 +0100
+
+    Added Menu and Score
+    
+    Added a Main Menu
+    -Quit button
+    -Start Button
+    -Saved High Score
+    -Game Over screen
+
+Assets/FlexibleCelShader.meta
+Assets/FlexibleCelShader/Editor.meta
+Assets/FlexibleCelShader/Editor/CelCustomEditor.cs
+Assets/FlexibleCelShader/Editor/CelCustomEditor.cs.meta
+Assets/FlexibleCelShader/Editor/PresetDataConainer.cs
+Assets/FlexibleCelShader/Editor/PresetDataConainer.cs.meta
+Assets/FlexibleCelShader/Editor/PresetHelper.cs
+Assets/FlexibleCelShader/Editor/PresetHelper.cs.meta
+Assets/FlexibleCelShader/Example.meta
+Assets/FlexibleCelShader/Example/Example Scene.unity
+Assets/FlexibleCelShader/Example/Example Scene.unity.meta
+Assets/FlexibleCelShader/Example/Example SceneSettings.lighting
+Assets/FlexibleCelShader/Example/Example SceneSettings.lighting.meta
+Assets/FlexibleCelShader/Example/ExplMat1.mat
+Assets/FlexibleCelShader/Example/ExplMat1.mat.meta
+Assets/FlexibleCelShader/Example/ExplMat2.mat
+Assets/FlexibleCelShader/Example/ExplMat2.mat.meta
+Assets/FlexibleCelShader/Example/ExplMat3.mat
+Assets/FlexibleCelShader/Example/ExplMat3.mat.meta
+Assets/FlexibleCelShader/GettingStarted.pdf
+Assets/FlexibleCelShader/GettingStarted.pdf.meta
+Assets/FlexibleCelShader/Presets.meta
+Assets/FlexibleCelShader/Presets/!Default.json
+Assets/FlexibleCelShader/Presets/!Default.json.meta
+Assets/FlexibleCelShader/Presets/Earthy Light.json
+Assets/FlexibleCelShader/Presets/Earthy Light.json.meta
+Assets/FlexibleCelShader/Presets/Electric Blue.json
+Assets/FlexibleCelShader/Presets/Electric Blue.json.meta
+Assets/FlexibleCelShader/Presets/Glacier.json
+Assets/FlexibleCelShader/Presets/Glacier.json.meta
+Assets/FlexibleCelShader/Presets/Inverted.json
+Assets/FlexibleCelShader/Presets/Inverted.json.meta
+Assets/FlexibleCelShader/Presets/Noir Purple.json
+Assets/FlexibleCelShader/Presets/Noir Purple.json.meta
+Assets/FlexibleCelShader/Presets/Solid Gold.json
+Assets/FlexibleCelShader/Presets/Solid Gold.json.meta
+Assets/FlexibleCelShader/Presets/Subtle Breeze.json
+Assets/FlexibleCelShader/Presets/Subtle Breeze.json.meta
+Assets/FlexibleCelShader/Presets/Summer Evening.json
+Assets/FlexibleCelShader/Presets/Summer Evening.json.meta
+Assets/FlexibleCelShader/Shaders.meta
+Assets/FlexibleCelShader/Shaders/CelNoOutline.shader
+Assets/FlexibleCelShader/Shaders/CelNoOutline.shader.meta
+Assets/FlexibleCelShader/Shaders/CelOutline.shader
+Assets/FlexibleCelShader/Shaders/CelOutline.shader.meta
+Assets/FlexibleCelShader/Shaders/CelSilhouette.shader
+Assets/FlexibleCelShader/Shaders/CelSilhouette.shader.meta
+Assets/FlexibleCelShader/Shaders/ToonMaterial.mat
+Assets/FlexibleCelShader/Shaders/ToonMaterial.mat.meta
+Assets/QuickOutline.meta
+Assets/QuickOutline/Readme.txt
+Assets/QuickOutline/Readme.txt.meta
+Assets/QuickOutline/Resources.meta
+Assets/QuickOutline/Resources/Materials.meta
+Assets/QuickOutline/Resources/Materials/OutlineFill.mat
+Assets/QuickOutline/Resources/Materials/OutlineFill.mat.meta
+Assets/QuickOutline/Resources/Materials/OutlineMask.mat
+Assets/QuickOutline/Resources/Materials/OutlineMask.mat.meta
+Assets/QuickOutline/Resources/Shaders.meta
+Assets/QuickOutline/Resources/Shaders/OutlineFill.shader
+Assets/QuickOutline/Resources/Shaders/OutlineFill.shader.meta
+Assets/QuickOutline/Resources/Shaders/OutlineMask.shader
+Assets/QuickOutline/Resources/Shaders/OutlineMask.shader.meta
+Assets/QuickOutline/Samples.meta
+Assets/QuickOutline/Samples/Materials.meta
+Assets/QuickOutline/Samples/Materials/Plane.mat
+Assets/QuickOutline/Samples/Materials/Plane.mat.meta
+Assets/QuickOutline/Samples/Scenes.meta
+Assets/QuickOutline/Samples/Scenes/QuickOutline.unity
+Assets/QuickOutline/Samples/Scenes/QuickOutline.unity.meta
+Assets/QuickOutline/Scripts.meta
+Assets/QuickOutline/Scripts/Outline.cs
+Assets/QuickOutline/Scripts/Outline.cs.meta
+Assets/Scenes/Main Menu.unity
+Assets/Scenes/Main Menu.unity.meta
+Assets/Scenes/MainGame.unity
+Assets/Scripts/GameOverManager.cs
+Assets/Scripts/GameOverManager.cs.meta
+Assets/Scripts/Menu.meta
+Assets/Scripts/Menu/MenuManager.cs
+Assets/Scripts/Menu/MenuManager.cs.meta
+Assets/Scripts/PlayerController.cs
+Assets/Scripts/ScoreManager.cs
+Assets/Scripts/ScoreManager.cs.meta
+Assets/SimpleNaturePack/Materials/SimpleNaturePack_BG.mat
+Assets/SimpleNaturePack/Materials/SimpleNaturePack_Texture_01.mat
+Assets/SimpleToon.meta
+Assets/SimpleToon/Demo.meta
+Assets/SimpleToon/Demo/Scene.meta
+Assets/SimpleToon/Demo/Scene/Demo.unity
+Assets/SimpleToon/Demo/Scene/Demo.unity.meta
+Assets/SimpleToon/Material.meta
+Assets/SimpleToon/Material/LitTest.mat
+Assets/SimpleToon/Material/LitTest.mat.meta
+Assets/SimpleToon/Material/New Material.mat
+Assets/SimpleToon/Material/New Material.mat.meta
+Assets/SimpleToon/Material/Sphere1.mat
+Assets/SimpleToon/Material/Sphere1.mat.meta
+Assets/SimpleToon/Material/Sphere2.mat
+Assets/SimpleToon/Material/Sphere2.mat.meta
+Assets/SimpleToon/Material/Sphere3.mat
+Assets/SimpleToon/Material/Sphere3.mat.meta
+Assets/SimpleToon/Material/Torus 1.mat
+Assets/SimpleToon/Material/Torus 1.mat.meta
+Assets/SimpleToon/Material/Torus 2.mat
+Assets/SimpleToon/Material/Torus 2.mat.meta
+Assets/SimpleToon/Material/Torus 3.mat
+Assets/SimpleToon/Material/Torus 3.mat.meta
+Assets/SimpleToon/Material/Torus 4.mat
+Assets/SimpleToon/Material/Torus 4.mat.meta
+Assets/SimpleToon/Model.meta
+Assets/SimpleToon/Model/Kawaii Slimes.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Cameras.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts/AbstractTargetFollower.cs
+Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts/AbstractTargetFollower.cs.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts/FreeLookCam.cs
+Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts/FreeLookCam.cs.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts/PivotBasedCameraRig.cs
+Assets/SimpleToon/Model/Kawaii Slimes/Cameras/Scripts/PivotBasedCameraRig.cs.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Face.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Face/Face 0.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Face/Face 0.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Face/Face 1.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Face/Face 1.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Face/Face 2.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Face/Face 2.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Face/Face 3.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Face/Face 3.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Face/Face.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Face/Face.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Hat.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Hat.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 1.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 1/Slime1_King.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 1/Slime1_King.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 1/Slime1_Viking.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 1/Slime1_Viking.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 1/Slime1_White.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 1/Slime1_White.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 2.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 2/Slime2.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 2/Slime2.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 3.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 3/Slime3 1.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 3/Slime3 1.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 3/Slime3 2.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 3/Slime3 2.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 3/Slime3 3.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 3/Slime3 3.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 3/Slime3 4.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 3/Slime3 4.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 3/Slime3.mat
+Assets/SimpleToon/Model/Kawaii Slimes/Materials/Slime 3/Slime3.mat.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Models.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Slimes.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Slimes/Slime_01.fbx
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Slimes/Slime_01.fbx.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Slimes/Slime_02.fbx
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Slimes/Slime_02.fbx.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Slimes/Slime_03.fbx
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Slimes/Slime_03.fbx.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Top.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Top/Crown.fbx
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Top/Crown.fbx.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Top/Leaf.fbx
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Top/Leaf.fbx.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Top/MetalHelmet.fbx
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Top/MetalHelmet.fbx.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Top/Sprout.fbx
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Top/Sprout.fbx.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Top/VikingHelmet.fbx
+Assets/SimpleToon/Model/Kawaii Slimes/Models/Top/VikingHelmet.fbx.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_01.prefab
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_01.prefab.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_01_King.prefab
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_01_King.prefab.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_01_MeltalHelmet.prefab
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_01_MeltalHelmet.prefab.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_01_Viking.prefab
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_01_Viking.prefab.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_02.prefab
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_02.prefab.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_03 King.prefab
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_03 King.prefab.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_03 Leaf.prefab
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_03 Leaf.prefab.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_03 Sprout.prefab
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_03 Sprout.prefab.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_03.prefab
+Assets/SimpleToon/Model/Kawaii Slimes/Prefabs/Slime_03.prefab.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Textures.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Face.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Face/Face_00.psd
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Face/Face_00.psd.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Face/Face_01.psd
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Face/Face_01.psd.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Face/Face_02.psd
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Face/Face_02.psd.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Face/Face_03.psd
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Face/Face_03.psd.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/ProtectiveHat.psd
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/ProtectiveHat.psd.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Slime_02.psd
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Slime_02.psd.meta
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Slime_03.psd
+Assets/SimpleToon/Model/Kawaii Slimes/Textures/Slime_03.psd.meta
+Assets/SimpleToon/Model/Monkey.meta
+Assets/SimpleToon/Model/Monkey/Mounkey.fbx
+Assets/SimpleToon/Model/Monkey/Mounkey.fbx.meta
+Assets/SimpleToon/Model/Torus 1.FBX
+Assets/SimpleToon/Model/Torus 1.FBX.meta
+Assets/SimpleToon/Process Profile.asset
+Assets/SimpleToon/Process Profile.asset.meta
+Assets/SimpleToon/Scripts.meta
+Assets/SimpleToon/Scripts/SelfRotation.cs
+Assets/SimpleToon/Scripts/SelfRotation.cs.meta
+Assets/SimpleToon/Shader.meta
+Assets/SimpleToon/Shader/MonToon.mat
+Assets/SimpleToon/Shader/MonToon.mat.meta
+Assets/SimpleToon/Shader/ToonLightBase.shader
+Assets/SimpleToon/Shader/ToonLightBase.shader.meta
+Assets/SimpleToon/Skybox.meta
+Assets/SimpleToon/Skybox/Day_BlueSky_Nothing Equirect.mat
+Assets/SimpleToon/Skybox/Day_BlueSky_Nothing Equirect.mat.meta
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Equirect.png
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Equirect.png.meta
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_0_Front+Z.png
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_0_Front+Z.png.meta
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_1_Back-Z.png
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_1_Back-Z.png.meta
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_2_Left+X.png
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_2_Left+X.png.meta
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_3_Right-X.png
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_3_Right-X.png.meta
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_4_Up+Y.png
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_4_Up+Y.png.meta
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_5_Down-Y.png
+Assets/SimpleToon/Skybox/Sky_Day_BlueSky_Nothing_Cam_5_Down-Y.png.meta
+Assets/Thaleah_PixelFont.meta
+Assets/Thaleah_PixelFont/Materials.meta
+Assets/Thaleah_PixelFont/Materials/ThaleahFat.mat
+Assets/Thaleah_PixelFont/Materials/ThaleahFat.mat.meta
+Assets/Thaleah_PixelFont/Materials/ThaleahFat.png
+Assets/Thaleah_PixelFont/Materials/ThaleahFat.png.meta
+Assets/Thaleah_PixelFont/Materials/ThaleahFat_TTF SDF.asset
+Assets/Thaleah_PixelFont/Materials/ThaleahFat_TTF SDF.asset.meta
+Assets/Thaleah_PixelFont/Materials/ThaleahFat_TTF.ttf
+Assets/Thaleah_PixelFont/Materials/ThaleahFat_TTF.ttf.meta
+Assets/Thaleah_PixelFont/Materials/Thaleah_DemoBackground.png
+Assets/Thaleah_PixelFont/Materials/Thaleah_DemoBackground.png.meta
+Assets/Thaleah_PixelFont/ThaleahFat.fontsettings
+Assets/Thaleah_PixelFont/ThaleahFat.fontsettings.meta
+Assets/Thaleah_PixelFont/Thaleah_Demo.unity
+Assets/Thaleah_PixelFont/Thaleah_Demo.unity.meta
+Assets/Thaleah_PixelFont/Thaleah_Readme.pdf
+Assets/Thaleah_PixelFont/Thaleah_Readme.pdf.meta
+Assets/Tree_Textures.meta
+Assets/Tree_Textures/diffuse.png
+Assets/Tree_Textures/diffuse.png.meta
+Assets/Tree_Textures/normal_specular.png
+Assets/Tree_Textures/normal_specular.png.meta
+Assets/Tree_Textures/shadow.png
+Assets/Tree_Textures/shadow.png.meta
+Assets/Tree_Textures/translucency_gloss.png
+Assets/Tree_Textures/translucency_gloss.png.meta
+Assets/UnityTechnologies/ParticlePack/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+Assets/UnityTechnologies/ParticlePack/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+ProjectSettings/EditorBuildSettings.asset
