@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     [Header("Effets Visuels")]
     public GameObject deathParticles; // Prefab de particules (Looping décoché)
 
+    [Header("Game Over")]
+    public GameOverManager gameOverManager; // Référence au GameOverManager
+
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private bool isMoving = false;
@@ -99,7 +102,13 @@ public class PlayerController : MonoBehaviour
 
             Debug.Log("Le joueur a été touché !");
 
-            // On désactive le joueur au lieu de le détruire pour éviter les erreurs de caméra
+            // Afficher le Game Over
+            if (gameOverManager != null)
+            {
+                gameOverManager.ShowGameOver();
+            }
+
+            // On désactive le joueur
             gameObject.SetActive(false);
         }
     }

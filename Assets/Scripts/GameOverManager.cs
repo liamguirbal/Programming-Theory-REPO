@@ -152,7 +152,14 @@ public class GameOverManager : MonoBehaviour
 
         Debug.Log("Animation démarrée !");
 
+        // Activer le Canvas parent aussi !
+        if (gameOverPanel.transform.parent != null)
+        {
+            gameOverPanel.transform.parent.gameObject.SetActive(true);
+        }
+
         gameOverPanel.SetActive(true);
+
         isAnimating = true;
         animationTimer = 0f;
 

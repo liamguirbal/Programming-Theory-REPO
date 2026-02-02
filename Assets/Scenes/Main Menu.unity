@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 945442116}
+      - m_Target: {fileID: 945442118}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -261,7 +261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 945442117}
-  - component: {fileID: 945442116}
+  - component: {fileID: 945442118}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -269,21 +269,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &945442116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945442115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bc8d92b716283f4f93dee3ec516248d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuManager
-  bestScoreText: {fileID: 1027634222}
-  gameSceneName: MainGame
-  showBestScore: 1
 --- !u!4 &945442117
 Transform:
   m_ObjectHideFlags: 0
@@ -299,6 +284,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &945442118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945442115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e390d2828bd9a438eec97c2565ccb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuManager
+  bestScoreText: {fileID: 1027634222}
+  gameSceneName: MainGame
+  showBestScore: 1
 --- !u!1 &1027634221
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,8 +339,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Best Score: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2dc1c43942e778941addef868abdae13, type: 2}
-  m_sharedMaterial: {fileID: 5120918937417041774, guid: 2dc1c43942e778941addef868abdae13, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a1b9f4056eb22014db15759648210a5e, type: 2}
+  m_sharedMaterial: {fileID: -1899177138367367971, guid: a1b9f4056eb22014db15759648210a5e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -495,8 +495,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quitter
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2dc1c43942e778941addef868abdae13, type: 2}
-  m_sharedMaterial: {fileID: 5120918937417041774, guid: 2dc1c43942e778941addef868abdae13, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a1b9f4056eb22014db15759648210a5e, type: 2}
+  m_sharedMaterial: {fileID: -1899177138367367971, guid: a1b9f4056eb22014db15759648210a5e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -634,8 +634,8 @@ MonoBehaviour:
 
     Crossway'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2dc1c43942e778941addef868abdae13, type: 2}
-  m_sharedMaterial: {fileID: 5120918937417041774, guid: 2dc1c43942e778941addef868abdae13, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a1b9f4056eb22014db15759648210a5e, type: 2}
+  m_sharedMaterial: {fileID: -1899177138367367971, guid: a1b9f4056eb22014db15759648210a5e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 945442116}
+      - m_Target: {fileID: 945442118}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
@@ -1125,8 +1125,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2dc1c43942e778941addef868abdae13, type: 2}
-  m_sharedMaterial: {fileID: 5120918937417041774, guid: 2dc1c43942e778941addef868abdae13, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a1b9f4056eb22014db15759648210a5e, type: 2}
+  m_sharedMaterial: {fileID: -1899177138367367971, guid: a1b9f4056eb22014db15759648210a5e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
