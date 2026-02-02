@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Palmov Island.meta
 guid: d0347ccc3e297064f960941f0d197c0d
+========
+guid: 3f25702c5c7afec41b85b074bf76e4a4
+>>>>>>>> Stashed changes:Assets/SimpleNaturePack/Materials.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

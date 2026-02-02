@@ -148,6 +148,7 @@ public class PlayerController : MonoBehaviour
             HandleDeath();
         }
     }
+<<<<<<< Updated upstream
 
     /// <summary>
     /// Alternative avec OnTriggerEnter si vous utilisez des colliders en Trigger
@@ -197,3 +198,8 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireCube(snappedPos, Vector3.one * 0.9f);
     }
 }
+=======
+
+}
+
+>>>>>>> Stashed changes
