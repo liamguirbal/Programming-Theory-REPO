@@ -302,6 +302,12 @@ MonoBehaviour:
   minScale: 0.8
   maxScale: 1.2
   randomYRotationOnly: 1
+  powerUpPrefabs:
+  - {fileID: 2251477238887063611, guid: 691ad24cc08dbb34d81f716e95bde222, type: 3}
+  - {fileID: 7694425507128719531, guid: 6db108a33e2fb8c45b8ccbc682fa3a60, type: 3}
+  - {fileID: 6286322088228829762, guid: 79b47c122409a8b46a6bcba9f7dfa046, type: 3}
+  powerUpSpawnChance: 8
+  powerUpHeight: 0.5
   terrainWidth: 22
   roadStartX: -3
   roadWidth: 6

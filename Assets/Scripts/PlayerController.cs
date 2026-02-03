@@ -1,27 +1,35 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("RÈglages de mouvement")]
+    [Header("R√©glages de mouvement")]
     public float moveDistance = 1f;
     public float moveSpeed = 10f;
     public float jumpHeight = 0.5f;
-    public LayerMask obstacleLayer; // DÈfinir ici le Layer "Obstacle"
+    public LayerMask obstacleLayer; // D√©finir ici le Layer "Obstacle"
 
     [Header("Effets Visuels")]
-    public GameObject deathParticles; // Prefab de particules (Looping dÈcochÈ)
+    public GameObject deathParticles; // Prefab de particules (Looping d√©coch√©)
 
     [Header("Game Over")]
-    public GameOverManager gameOverManager; // RÈfÈrence au GameOverManager
+    public GameOverManager gameOverManager; // R√©f√©rence au GameOverManager
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private bool isMoving = false;
     private float movePercent = 0f;
 
+
+    [Header("Power-Ups")]
+    [Header("Power-Ups")]
+    public bool hasShield = false;
+    public Shield activeShield; // ‚≠ê AJOUT√â : Public pour que Shield puisse s'enregistrer
+
+
+
     void Update()
     {
-        // On ne lit les touches que si le joueur n'est pas dÈj‡ en train de bouger
+        // On ne lit les touches que si le joueur n'est pas d√©j√† en train de bouger
         if (!isMoving)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow)) AttemptMove(Vector3.forward);
@@ -35,22 +43,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 1. VÈrification de la prÈsence d'un mur avant de sauter
+    // 1. V√©rification de la pr√©sence d'un mur avant de sauter
     void AttemptMove(Vector3 direction)
     {
-        // Raycast envoyÈ depuis le centre du joueur vers la direction visÈe
-        // On monte le point de dÈpart de 0.5f pour Èviter de toucher le sol
+        // Raycast envoy√© depuis le centre du joueur vers la direction vis√©e
+        // On monte le point de d√©part de 0.5f pour √©viter de toucher le sol
         if (!Physics.Raycast(transform.position + Vector3.up * 0.2f, direction, moveDistance, obstacleLayer))
         {
             StartMove(direction);
         }
         else
         {
-            Debug.Log("Mouvement bloquÈ par un mur !");
+            Debug.Log("Mouvement bloqu√© par un mur !");
         }
     }
 
-    // 2. Initialisation des donnÈes de mouvement
+    // 2. Initialisation des donn√©es de mouvement
     void StartMove(Vector3 direction)
     {
         startPosition = transform.position;
@@ -92,24 +100,51 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ennemi"))
         {
+            Debug.Log($"Collision avec ennemi ! hasShield = {hasShield}");
+
+            // Si le joueur a un bouclier
+            if (hasShield)
+            {
+                hasShield = false;
+                Debug.Log("Bouclier a absorb√© l'attaque !");
+
+                // ‚≠ê Appeler l'effet du shield
+                if (activeShield != null)
+                {
+                    activeShield.OnShieldHit(collision.contacts[0].point);
+                    activeShield = null; // R√©initialiser
+                }
+
+                // D√©truire l'ennemi
+                Destroy(collision.gameObject);
+
+                return; // Ne pas mourir
+            }
+
+            // Code de mort normal...
             if (deathParticles != null)
             {
-                // Apparition des particules
                 GameObject effect = Instantiate(deathParticles, transform.position, Quaternion.identity);
-                // Destruction de l'objet particules aprËs 2 secondes pour nettoyer la scËne
                 Destroy(effect, 2f);
             }
 
-            Debug.Log("Le joueur a ÈtÈ touchÈ !");
+            Debug.Log("Le joueur devrait mourir maintenant !");
 
-            // Afficher le Game Over
             if (gameOverManager != null)
             {
                 gameOverManager.ShowGameOver();
             }
 
-            // On dÈsactive le joueur
             gameObject.SetActive(false);
         }
     }
+
+
+
+    // ‚≠ê AJOUT√â : Appel√© par le Shield power-up
+    public void SetActiveShield(Shield shield)
+    {
+        activeShield = shield;
+    }
+
 }

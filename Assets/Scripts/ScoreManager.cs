@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -6,17 +6,17 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    [Header("RÈfÈrences")]
+    [Header("R√©f√©rences")]
     [Tooltip("Texte UI pour afficher le score actuel")]
     public TextMeshProUGUI scoreText;
 
     [Tooltip("Texte UI pour afficher le meilleur score")]
     public TextMeshProUGUI bestScoreText;
 
-    [Tooltip("RÈfÈrence au joueur")]
+    [Tooltip("R√©f√©rence au joueur")]
     public Transform player;
 
-    [Header("ParamËtres")]
+    [Header("Param√®tres")]
     [Tooltip("Afficher le meilleur score en jeu")]
     public bool showBestScore = true;
 
@@ -27,17 +27,18 @@ public class ScoreManager : MonoBehaviour
     [Tooltip("Couleur du score quand il augmente")]
     public Color scoreIncreaseColor = Color.green;
 
-    [Tooltip("…chelle maximale lors de l'animation (1.0 = normal)")]
+    [Tooltip("√âchelle maximale lors de l'animation (1.0 = normal)")]
     [Range(1f, 2f)]
     public float maxScale = 1.3f;
 
-    [Tooltip("DurÈe de l'animation en secondes")]
+    [Tooltip("Dur√©e de l'animation en secondes")]
     [Range(0.1f, 1f)]
     public float animationDuration = 0.3f;
 
     private int currentScore = 0;
     private int bestScore = 0;
     private float maxZReached = 0f;
+    private int scoreMultiplier = 1;
 
     // Variables pour l'animation
     private Color originalColor;
@@ -79,10 +80,16 @@ public class ScoreManager : MonoBehaviour
             if (currentZ > maxZReached)
             {
                 int previousScore = currentScore;
-                maxZReached = currentZ;
-                currentScore = Mathf.FloorToInt(maxZReached);
 
-                // DÈclencher l'animation si le score a changÈ
+                // ‚≠ê Calculer le score de base (distance parcourue)
+                int baseScore = Mathf.FloorToInt(currentZ);
+
+                // ‚≠ê Appliquer le multiplicateur UNIQUEMENT pour l'affichage
+                currentScore = baseScore * scoreMultiplier;
+
+                maxZReached = currentZ;
+
+                // D√©clencher l'animation si le score a chang√©
                 if (currentScore > previousScore)
                 {
                     if (animateScore)
@@ -90,10 +97,11 @@ public class ScoreManager : MonoBehaviour
                         StartScoreAnimation();
                     }
 
-                    // Mettre ‡ jour le meilleur score
-                    if (currentScore > bestScore)
+                    // Mettre √† jour le meilleur score (sans multiplicateur pour √™tre juste)
+                    int realScore = baseScore; // Score r√©el sans multiplicateur
+                    if (realScore > bestScore)
                     {
-                        bestScore = currentScore;
+                        bestScore = realScore;
                         PlayerPrefs.SetInt("BestScore", bestScore);
                         PlayerPrefs.Save();
                     }
@@ -103,12 +111,13 @@ public class ScoreManager : MonoBehaviour
             }
         }
 
-        // GÈrer l'animation
+        // G√©rer l'animation
         if (isAnimating)
         {
             UpdateScoreAnimation();
         }
     }
+
 
     void StartScoreAnimation()
     {
@@ -160,6 +169,7 @@ public class ScoreManager : MonoBehaviour
     {
         currentScore = 0;
         maxZReached = 0f;
+        scoreMultiplier = 1;
 
         if (scoreText != null)
         {
@@ -169,6 +179,19 @@ public class ScoreManager : MonoBehaviour
 
         isAnimating = false;
         UpdateUI();
+    }
+
+    // ‚≠ê MODIFI√â : Ne recalcule PLUS le score total
+    public void SetMultiplier(int multiplier)
+    {
+        scoreMultiplier = multiplier;
+        Debug.Log($"Multiplicateur de score d√©fini √† x{multiplier}");
+        // ‚≠ê SUPPRIM√â : Ne pas recalculer le score !
+    }
+
+    public int GetMultiplier()
+    {
+        return scoreMultiplier;
     }
 
     public int GetCurrentScore()
@@ -183,6 +206,6 @@ public class ScoreManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene("Menu"); // Ou le nom de votre scËne de menu
+        SceneManager.LoadScene("Menu");
     }
 }

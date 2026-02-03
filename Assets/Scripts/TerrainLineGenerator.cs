@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+Ôªøusing System.Collections.Generic;
 using UnityEngine;
 
 public class TerrainLineGenerator : MonoBehaviour
@@ -11,21 +11,21 @@ public class TerrainLineGenerator : MonoBehaviour
     [Tooltip("Obstacles qui bloquent le passage (arbres, rochers, murs)")]
     public GameObject[] obstaclePrefabs;
 
-    [Tooltip("Obstacles qui doivent tourner par paliers de 90∞ (barriËres, panneaux)")]
+    [Tooltip("Obstacles qui doivent tourner par paliers de 90¬∞ (barri√®res, panneaux)")]
     public GameObject[] obstacles90DegreeRotation;
 
-    [Tooltip("DensitÈ des obstacles (0-100%)")]
+    [Tooltip("Densit√© des obstacles (0-100%)")]
     [Range(0f, 100f)]
     public float obstacleDensity = 30f;
 
-    [Header("DÈcorations au Sol")]
-    [Tooltip("DÈcorations qui ne bloquent pas (herbes, fleurs, cailloux)")]
+    [Header("D√©corations au Sol")]
+    [Tooltip("D√©corations qui ne bloquent pas (herbes, fleurs, cailloux)")]
     public GameObject[] decorationPrefabs;
 
-    [Tooltip("DÈcorations ‡ rotation 90∞ uniquement (pierres plates, planches)")]
+    [Tooltip("D√©corations √† rotation 90¬∞ uniquement (pierres plates, planches)")]
     public GameObject[] decorations90DegreeRotation;
 
-    [Tooltip("DensitÈ des dÈcorations (0-100%)")]
+    [Tooltip("Densit√© des d√©corations (0-100%)")]
     [Range(0f, 100f)]
     public float decorationDensity = 20f;
 
@@ -33,28 +33,39 @@ public class TerrainLineGenerator : MonoBehaviour
     [Range(0f, 1f)]
     public float decorationZSpread = 0.4f;
 
-    [Tooltip("Activer la variation d'Èchelle des dÈcorations")]
+    [Tooltip("Activer la variation d'√©chelle des d√©corations")]
     public bool randomizeScale = true;
 
-    [Tooltip("…chelle minimale des dÈcorations")]
+    [Tooltip("√âchelle minimale des d√©corations")]
     [Range(0.5f, 1.5f)]
     public float minScale = 0.8f;
 
-    [Tooltip("…chelle maximale des dÈcorations")]
+    [Tooltip("√âchelle maximale des d√©corations")]
     [Range(0.5f, 1.5f)]
     public float maxScale = 1.2f;
 
-    [Tooltip("Rotation alÈatoire uniquement sur l'axe Y")]
+    [Tooltip("Rotation al√©atoire uniquement sur l'axe Y")]
     public bool randomYRotationOnly = true;
 
-    [Header("ParamËtres de la Grille")]
-    [Tooltip("Largeur totale du terrain (en unitÈs)")]
+    [Header("‚≠ê POWER-UPS ‚≠ê")]
+    [Tooltip("Pr√©fabs des power-ups (Shield, Speed, Multiplier, etc.)")]
+    public GameObject[] powerUpPrefabs;
+
+    [Tooltip("Chance de spawn d'un power-up par ligne (0-100%)")]
+    [Range(0f, 100f)]
+    public float powerUpSpawnChance = 15f;
+
+    [Tooltip("Hauteur de spawn des power-ups (Y)")]
+    public float powerUpHeight = 0.5f;
+
+    [Header("Param√®tres de la Grille")]
+    [Tooltip("Largeur totale du terrain (en unit√©s)")]
     public int terrainWidth = 22;
 
-    [Tooltip("Position de dÈbut de la route (axe X) - pour Èviter les dÈcos sur la route")]
+    [Tooltip("Position de d√©but de la route (axe X) - pour √©viter les d√©cos sur la route")]
     public int roadStartX = -3;
 
-    [Tooltip("Largeur de la route (nombre de cases) - pour Èviter les dÈcos")]
+    [Tooltip("Largeur de la route (nombre de cases) - pour √©viter les d√©cos")]
     public int roadWidth = 6;
 
     [Tooltip("Nombre minimum de cases libres pour les terrains Grass")]
@@ -65,7 +76,7 @@ public class TerrainLineGenerator : MonoBehaviour
     [Tooltip("Plateformes sur lesquelles le joueur peut monter")]
     public GameObject[] platformPrefabs;
 
-    [Tooltip("Nombre de plateformes ‡ spawner")]
+    [Tooltip("Nombre de plateformes √† spawner")]
     [Range(0, 10)]
     public int platformCount = 3;
 
@@ -75,7 +86,7 @@ public class TerrainLineGenerator : MonoBehaviour
     [Tooltip("Direction du mouvement (-1 = gauche, 1 = droite)")]
     public int platformDirection = 1;
 
-    [Tooltip("Tailles possibles des plateformes (en unitÈs de grille)")]
+    [Tooltip("Tailles possibles des plateformes (en unit√©s de grille)")]
     public int[] platformSizes = new int[] { 2, 3, 4 };
 
     [Tooltip("Espacement entre les plateformes")]
@@ -90,7 +101,7 @@ public class TerrainLineGenerator : MonoBehaviour
 
     void GenerateTerrain()
     {
-        // Les dÈcorations pour tous les types de terrain
+        // Les d√©corations pour tous les types de terrain
         SpawnDecorations();
 
         // Les obstacles seulement pour Grass
@@ -100,11 +111,13 @@ public class TerrainLineGenerator : MonoBehaviour
         }
 
         // Les plateformes seulement pour River
-        // La route gËre ses propres voitures via son spawner intÈgrÈ
         if (terrainType == TerrainType.River && platformPrefabs.Length > 0)
         {
             SpawnPlatforms();
         }
+
+        // ‚≠ê NOUVEAU : Spawner un power-up al√©atoire
+        SpawnPowerUp();
     }
 
     void SpawnDecorations()
@@ -113,23 +126,18 @@ public class TerrainLineGenerator : MonoBehaviour
 
         int halfWidth = terrainWidth / 2;
 
-        // Calculer le nombre de dÈcorations ‡ spawner basÈ sur la densitÈ
         int decorationCount = Mathf.RoundToInt((terrainWidth * decorationDensity) / 100f);
 
         for (int i = 0; i < decorationCount; i++)
         {
-            // Position X complËtement alÈatoire (pas sur la grille !)
             float randomX = UnityEngine.Random.Range(-halfWidth, halfWidth + 1f);
-
-            // Position Z alÈatoire pour effet organique
             float randomZ = UnityEngine.Random.Range(-decorationZSpread, decorationZSpread);
 
-            // Pour les routes, ne pas placer de dÈcorations sur la route elle-mÍme
             if (terrainType == TerrainType.Road)
             {
                 if (randomX >= roadStartX && randomX < roadStartX + roadWidth)
                 {
-                    continue; // Sauter cette dÈcoration
+                    continue;
                 }
             }
 
@@ -153,14 +161,12 @@ public class TerrainLineGenerator : MonoBehaviour
 
             if (decorationPrefab != null)
             {
-                // Position complËtement alÈatoire (organique !)
                 Vector3 spawnPosition = transform.position + new Vector3(randomX, 0, randomZ);
                 Quaternion rotation = use90Degree ? GetRandom90DegreeRotation() : GetRandomRotation();
 
                 GameObject decoration = Instantiate(decorationPrefab, spawnPosition, rotation);
                 decoration.transform.SetParent(this.transform);
 
-                // Variation d'Èchelle pour effet naturel
                 if (randomizeScale)
                 {
                     float randomScale = UnityEngine.Random.Range(minScale, maxScale);
@@ -243,6 +249,40 @@ public class TerrainLineGenerator : MonoBehaviour
             moveScript.minX = transform.position.x - terrainWidth * 2;
             moveScript.maxX = transform.position.x + terrainWidth * 2;
         }
+    }
+
+    // ‚≠ê NOUVEAU : Spawner un power-up al√©atoire
+    void SpawnPowerUp()
+    {
+        // Si pas de power-ups configur√©s, on sort
+        if (powerUpPrefabs == null || powerUpPrefabs.Length == 0) return;
+
+        // Test de chance de spawn
+        float randomChance = UnityEngine.Random.Range(0f, 100f);
+        if (randomChance > powerUpSpawnChance) return; // Pas de spawn cette fois
+
+        // Choisir un power-up al√©atoire
+        int randomIndex = UnityEngine.Random.Range(0, powerUpPrefabs.Length);
+        GameObject powerUpPrefab = powerUpPrefabs[randomIndex];
+
+        // Position al√©atoire sur la ligne
+        int halfWidth = terrainWidth / 2;
+        float randomX = UnityEngine.Random.Range(-halfWidth + 1, halfWidth);
+
+        // Pour les routes, spawner sur la route (zone de passage du joueur)
+        if (terrainType == TerrainType.Road)
+        {
+            randomX = UnityEngine.Random.Range(roadStartX + 1, roadStartX + roadWidth - 1);
+        }
+
+        // Position de spawn
+        Vector3 spawnPosition = transform.position + new Vector3(randomX, powerUpHeight, 0);
+
+        // Spawner le power-up
+        GameObject powerUp = Instantiate(powerUpPrefab, spawnPosition, Quaternion.identity);
+        powerUp.transform.SetParent(this.transform);
+
+        Debug.Log($"Power-up spawn√© : {powerUpPrefab.name} √† la position {spawnPosition}");
     }
 
     Quaternion GetRandomRotation()
