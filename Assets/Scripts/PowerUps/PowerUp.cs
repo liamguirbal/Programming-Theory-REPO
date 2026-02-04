@@ -38,7 +38,13 @@ public abstract class PowerUp : MonoBehaviour
         if (pickupEffect != null)
         {
             GameObject effect = Instantiate(pickupEffect, transform.position, Quaternion.identity);
-            Destroy(effect, 2f); // ⭐ Détruit les particules après 2 secondes
+            Destroy(effect, 2f);
+        }
+
+        // ⭐ AJOUTÉ : Jouer le son de pick-up
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayPowerUpPickup();
         }
 
         ApplyEffect(); // Appel polymorphe
@@ -56,7 +62,4 @@ public abstract class PowerUp : MonoBehaviour
         RemoveEffect();
         Destroy(gameObject);
     }
-
-
-
 }

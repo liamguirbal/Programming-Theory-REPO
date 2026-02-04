@@ -4,14 +4,15 @@ public class SpeedBoost : PowerUp
 {
     [Header("Speed Boost")]
     public float speedMultiplier = 2f;
-    public string indicatorName = "SpeedIndicator"; // ⭐ Nom exact
+    public string indicatorName = "SpeedIndicator";
 
     private float originalSpeed;
     private GameObject indicator;
+    private PlayerController controller;
 
     protected override void ApplyEffect()
     {
-        PlayerController controller = player.GetComponent<PlayerController>();
+        controller = player.GetComponent<PlayerController>();
         if (controller != null)
         {
             originalSpeed = controller.moveSpeed;
@@ -19,13 +20,12 @@ public class SpeedBoost : PowerUp
             Debug.Log($"Vitesse augmentée ! Nouvelle vitesse : {controller.moveSpeed}");
         }
 
-        // Activer l'indicateur
         ShowIndicator(true);
     }
 
     protected override void RemoveEffect()
     {
-        PlayerController controller = player.GetComponent<PlayerController>();
+        // ⭐ FIX : Vérifier que le controller existe toujours
         if (controller != null)
         {
             controller.moveSpeed = originalSpeed;
@@ -35,35 +35,33 @@ public class SpeedBoost : PowerUp
         ShowIndicator(false);
     }
 
-    // ⭐ Fonction pour afficher/cacher l'indicateur
+    // ⭐ AJOUTÉ : S'assurer que RemoveEffect est appelé avant destruction
+    private void OnDestroy()
+    {
+        // Si le GameObject est détruit, remettre la vitesse normale
+        if (controller != null && controller.moveSpeed != originalSpeed)
+        {
+            controller.moveSpeed = originalSpeed;
+            Debug.Log("SpeedBoost détruit, vitesse réinitialisée via OnDestroy");
+        }
+
+        ShowIndicator(false);
+    }
+
     private void ShowIndicator(bool show)
     {
         if (indicator == null && player != null)
         {
-            // ⭐ DEBUG : Afficher TOUS les enfants du Player
-            Debug.Log($"Player a {player.transform.childCount} enfants :");
-            for (int i = 0; i < player.transform.childCount; i++)
-            {
-                Debug.Log($"  Enfant {i} : '{player.transform.GetChild(i).name}'");
-            }
-
             Transform indicatorTransform = player.transform.Find(indicatorName);
             if (indicatorTransform != null)
             {
                 indicator = indicatorTransform.gameObject;
-                Debug.Log($"SpeedIndicator trouvé !");
-            }
-            else
-            {
-                Debug.LogError($"SpeedIndicator introuvable ! Nom recherché : '{indicatorName}'");
             }
         }
 
         if (indicator != null)
         {
             indicator.SetActive(show);
-            Debug.Log($"SpeedIndicator {(show ? "activé" : "désactivé")} !");
         }
     }
-
 }

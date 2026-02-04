@@ -3,9 +3,10 @@
 public class Shield : PowerUp
 {
     [Header("Shield - Effets Visuels")]
-    public GameObject shieldHitParticles; // Particules quand le shield bloque
+    public GameObject shieldHitParticles;
+    public string indicatorName = "ShieldIndicator";
 
-    private GameObject shieldIndicator; // L'indicateur visuel du shield
+    private GameObject indicator;
 
     protected override void ApplyEffect()
     {
@@ -14,21 +15,7 @@ public class Shield : PowerUp
 
         Debug.Log("Shield activé !");
 
-        // Trouver et activer ShieldIndicator
-        if (shieldIndicator == null)
-        {
-            shieldIndicator = player.transform.Find("ShieldIndicator")?.gameObject;
-        }
-
-        if (shieldIndicator != null)
-        {
-            shieldIndicator.SetActive(true);
-            Debug.Log("ShieldIndicator activé !");
-        }
-        else
-        {
-            Debug.LogError("ShieldIndicator introuvable en tant qu'enfant du Player !");
-        }
+        ShowIndicator(true);
     }
 
     protected override void RemoveEffect()
@@ -36,36 +23,81 @@ public class Shield : PowerUp
         if (player != null)
         {
             player.hasShield = false;
+            player.activeShield = null;
             Debug.Log("Shield expiré !");
         }
 
-        // Désactiver ShieldIndicator
-        if (shieldIndicator != null)
-        {
-            shieldIndicator.SetActive(false);
-        }
+        ShowIndicator(false);
     }
 
     public void OnShieldHit(Vector3 hitPosition)
     {
         Debug.Log("Shield a bloqué une attaque !");
 
-        // Spawner les particules
+        // ⭐ Jouer le son du shield
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayShieldBlock();
+        }
+
         if (shieldHitParticles != null)
         {
             GameObject particles = Instantiate(shieldHitParticles, hitPosition, Quaternion.identity);
             Destroy(particles, 2f);
         }
 
-        // Désactiver ShieldIndicator
-        if (shieldIndicator != null)
+        FindAndDeactivateIndicator();
+
+        if (player != null)
         {
-            shieldIndicator.SetActive(false);
+            player.hasShield = false;
+            player.activeShield = null;
         }
 
-        // Retirer le shield
         CancelInvoke();
-        RemoveEffect();
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        FindAndDeactivateIndicator();
+
+        if (player != null)
+        {
+            player.hasShield = false;
+            player.activeShield = null;
+        }
+    }
+
+    private void ShowIndicator(bool show)
+    {
+        if (indicator == null && player != null)
+        {
+            Transform indicatorTransform = player.transform.Find(indicatorName);
+            if (indicatorTransform != null)
+            {
+                indicator = indicatorTransform.gameObject;
+                Debug.Log("ShieldIndicator trouvé !");
+            }
+        }
+
+        if (indicator != null)
+        {
+            indicator.SetActive(show);
+            Debug.Log($"ShieldIndicator {(show ? "activé" : "désactivé")} !");
+        }
+    }
+
+    private void FindAndDeactivateIndicator()
+    {
+        if (player != null)
+        {
+            Transform indicatorTransform = player.transform.Find(indicatorName);
+            if (indicatorTransform != null)
+            {
+                indicatorTransform.gameObject.SetActive(false);
+                Debug.Log("ShieldIndicator désactivé !");
+            }
+        }
     }
 }

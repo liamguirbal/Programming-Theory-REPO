@@ -6,30 +6,29 @@ public class PlayerController : MonoBehaviour
     public float moveDistance = 1f;
     public float moveSpeed = 10f;
     public float jumpHeight = 0.5f;
-    public LayerMask obstacleLayer; // Définir ici le Layer "Obstacle"
+    public LayerMask obstacleLayer;
 
     [Header("Effets Visuels")]
-    public GameObject deathParticles; // Prefab de particules (Looping décoché)
+    public GameObject deathParticles;
 
     [Header("Game Over")]
-    public GameOverManager gameOverManager; // Référence au GameOverManager
+    public GameOverManager gameOverManager;
+
+    [Header("Power-Ups")]
+    public bool hasShield = false;
+    public Shield activeShield;
+
+    [Header("Score")]
+    public int pointsPerMove = 10;
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private bool isMoving = false;
     private float movePercent = 0f;
-
-
-    [Header("Power-Ups")]
-    [Header("Power-Ups")]
-    public bool hasShield = false;
-    public Shield activeShield; // ⭐ AJOUTÉ : Public pour que Shield puisse s'enregistrer
-
-
+    private Vector3 lastMoveDirection; // ⭐ AJOUTÉ : Mémoriser la direction
 
     void Update()
     {
-        // On ne lit les touches que si le joueur n'est pas déjà en train de bouger
         if (!isMoving)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow)) AttemptMove(Vector3.forward);
@@ -43,11 +42,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 1. Vérification de la présence d'un mur avant de sauter
     void AttemptMove(Vector3 direction)
     {
-        // Raycast envoyé depuis le centre du joueur vers la direction visée
-        // On monte le point de départ de 0.5f pour éviter de toucher le sol
         if (!Physics.Raycast(transform.position + Vector3.up * 0.2f, direction, moveDistance, obstacleLayer))
         {
             StartMove(direction);
@@ -58,67 +54,70 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 2. Initialisation des données de mouvement
     void StartMove(Vector3 direction)
     {
         startPosition = transform.position;
         targetPosition = startPosition + direction * moveDistance;
         movePercent = 0f;
         isMoving = true;
+        lastMoveDirection = direction; // ⭐ AJOUTÉ : Mémoriser la direction
 
-        // Oriente le personnage vers sa destination
         if (direction != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(direction);
         }
     }
 
-    // 3. Calcul de l'animation de saut et translation
     void AdvanceMovement()
     {
         movePercent += Time.deltaTime * moveSpeed;
 
-        // Position horizontale (X et Z)
         Vector3 currentPos = Vector3.Lerp(startPosition, targetPosition, movePercent);
-
-        // Position verticale (Y) pour l'effet de saut
         float yOffset = Mathf.Sin(movePercent * Mathf.PI) * jumpHeight;
         currentPos.y += yOffset;
 
         transform.position = currentPos;
 
-        // Fin du mouvement
         if (movePercent >= 1f)
         {
             transform.position = targetPosition;
             isMoving = false;
+
+            // ⭐ CORRIGÉ : Ajouter des points SEULEMENT si c'est vers l'avant
+            if (lastMoveDirection == Vector3.forward)
+            {
+                AddScoreForMove();
+            }
         }
     }
 
-    // 4. Gestion de la collision avec les ennemis
+    void AddScoreForMove()
+    {
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddScore(pointsPerMove);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ennemi"))
         {
             Debug.Log($"Collision avec ennemi ! hasShield = {hasShield}");
 
-            // Si le joueur a un bouclier
             if (hasShield)
             {
                 hasShield = false;
                 Debug.Log("Bouclier a absorbé l'attaque !");
 
-                // ⭐ Appeler l'effet du shield
                 if (activeShield != null)
                 {
                     activeShield.OnShieldHit(collision.contacts[0].point);
-                    activeShield = null; // Réinitialiser
+                    activeShield = null;
                 }
 
-                // Détruire l'ennemi
                 Destroy(collision.gameObject);
-
-                return; // Ne pas mourir
+                return;
             }
 
             // Code de mort normal...
@@ -126,6 +125,12 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject effect = Instantiate(deathParticles, transform.position, Quaternion.identity);
                 Destroy(effect, 2f);
+            }
+
+            // ⭐ Jouer le son de mort
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayDeath();
             }
 
             Debug.Log("Le joueur devrait mourir maintenant !");
@@ -136,15 +141,12 @@ public class PlayerController : MonoBehaviour
             }
 
             gameObject.SetActive(false);
+
         }
     }
 
-
-
-    // ⭐ AJOUTÉ : Appelé par le Shield power-up
     public void SetActiveShield(Shield shield)
     {
         activeShield = shield;
     }
-
 }
