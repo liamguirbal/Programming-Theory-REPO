@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VehiculeSpawner : MonoBehaviour // Vérifie que ton fichier s'appelle bien VehiculeSpawner.cs
+public class VehiculeSpawner : MonoBehaviour 
 {
     [Header("Pool de Véhicules")]
     public List<GameObject> vehiclePrefabs;
@@ -24,10 +24,10 @@ public class VehiculeSpawner : MonoBehaviour // Vérifie que ton fichier s'appell
         {
             yield return new WaitForSeconds(spawnInterval);
 
-            // CHANGEMENT ICI : On utilise .Count pour une List
+            
             if (vehiclePrefabs != null && vehiclePrefabs.Count > 0)
             {
-                // CHANGEMENT ICI AUSSI : .Count au lieu de .Length
+               
                 int randomIndex = Random.Range(0, vehiclePrefabs.Count);
                 GameObject v = Instantiate(vehiclePrefabs[randomIndex], transform.position, transform.rotation);
 

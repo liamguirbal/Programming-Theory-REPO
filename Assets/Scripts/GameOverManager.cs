@@ -71,7 +71,6 @@ public class GameOverManager : MonoBehaviour
         {
             gameOverPanel.SetActive(false);
 
-            // Ajouter un CanvasGroup si pas déjà présent
             canvasGroup = gameOverPanel.GetComponent<CanvasGroup>();
             if (canvasGroup == null)
             {
@@ -83,21 +82,7 @@ public class GameOverManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        // TEST : Appuyer sur G pour afficher le Game Over
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            ShowGameOver();
-        }
-
-        if (isAnimating)
-        {
-            UpdateAnimation();
-        }
-    }
-
-    // Fonction appelée quand le joueur meurt
+    //Si Joueur Meurt
     public void ShowGameOver()
     {
         Debug.Log("ShowGameOver appelé !");
@@ -114,7 +99,7 @@ public class GameOverManager : MonoBehaviour
 
     IEnumerator GameOverSequence()
     {
-        // Récupérer les scores tout de suite
+        // Récupérer  scores
         int currentScore = 0;
         int bestScore = 0;
 
@@ -135,13 +120,13 @@ public class GameOverManager : MonoBehaviour
             bestScoreText.text = "Best: " + bestScore.ToString();
         }
 
-        // ATTENDRE 0.5 secondes AVANT de mettre en pause
+       
         yield return new WaitForSeconds(0.5f);
 
-        // MAINTENANT on met en pause
+       
         Time.timeScale = 0f;
 
-        // Lancer l'animation avec le délai configuré
+       
         StartCoroutine(StartGameOverAnimationDelayed());
     }
 
@@ -152,7 +137,7 @@ public class GameOverManager : MonoBehaviour
 
         Debug.Log("Animation démarrée !");
 
-        // Activer le Canvas parent aussi !
+      
         if (gameOverPanel.transform.parent != null)
         {
             gameOverPanel.transform.parent.gameObject.SetActive(true);
@@ -163,7 +148,7 @@ public class GameOverManager : MonoBehaviour
         isAnimating = true;
         animationTimer = 0f;
 
-        // Configuration initiale selon le type d'animation
+    
         switch (animationType)
         {
             case AnimationType.ScaleAndFade:
@@ -209,7 +194,7 @@ public class GameOverManager : MonoBehaviour
 
     void AnimateScaleAndFade(float progress)
     {
-        // Courbe d'ease-out pour un effet smooth
+       
         float easedProgress = 1f - Mathf.Pow(1f - progress, 3f);
 
         panelRect.localScale = originalScale * easedProgress;
@@ -218,7 +203,7 @@ public class GameOverManager : MonoBehaviour
 
     void AnimateSlideDown(float progress)
     {
-        // Ease-out
+        
         float easedProgress = 1f - Mathf.Pow(1f - progress, 3f);
 
         float targetY = 0f;
@@ -230,14 +215,21 @@ public class GameOverManager : MonoBehaviour
 
     void AnimateBounce(float progress)
     {
-        // Effet de rebond élastique
+        
         float bounce = Mathf.Sin(progress * Mathf.PI * 2f) * (1f - progress) * 0.3f;
         float scale = progress + bounce;
 
         panelRect.localScale = originalScale * scale;
     }
+    void Update()
+    {
+        if (isAnimating)  //
+        {
+            UpdateAnimation();
+        }
+    }
 
-    // Fonction pour le bouton Restart
+
     public void RestartGame()
     {
         Time.timeScale = 1f; // Remettre le temps normal
@@ -247,7 +239,7 @@ public class GameOverManager : MonoBehaviour
     // Fonction pour le bouton Menu
     public void ReturnToMenu()
     {
-        Time.timeScale = 1f; // Remettre le temps normal
+        Time.timeScale = 1f; // Pareil
         SceneManager.LoadScene(menuSceneName);
     }
 }

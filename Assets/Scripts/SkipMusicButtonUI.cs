@@ -5,7 +5,7 @@ public class SkipMusicButtonUI : MonoBehaviour
 {
     void Start()
     {
-        // Ajouter le listener au bouton au démarrage
+      
         Button button = GetComponent<Button>();
         if (button != null)
         {
@@ -13,10 +13,10 @@ public class SkipMusicButtonUI : MonoBehaviour
         }
     }
 
-    // ⭐ Appelé quand on clique le bouton
+   
     public void SkipMusic()
     {
-        // Trouver l'AudioManager dynamiquement (peu importe où il est)
+        // Trouver l'AudioManager 
         AudioManager audioManager = FindFirstObjectByType<AudioManager>();
 
         if (audioManager != null)

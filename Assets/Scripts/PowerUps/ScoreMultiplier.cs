@@ -36,7 +36,7 @@ public class ScoreMultiplier : PowerUp
         ShowIndicator(false);
     }
 
-    // ⭐ S'assurer que RemoveEffect est appelé même si le GameObject est détruit
+
     private void OnDestroy()
     {
         // Remettre le multiplicateur à 1
@@ -69,7 +69,7 @@ public class ScoreMultiplier : PowerUp
         }
     }
 
-    // ⭐ Désactiver l'indicateur avec vérification
+
     private void FindAndDeactivateIndicator()
     {
         if (player != null)

@@ -31,12 +31,12 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        // ⭐ Singleton pattern avec persistence
+        // Singleton pattern avec persistence
         if (Instance == null)
         {
             Instance = this;
 
-            // ⭐ Faire persister cet objet entre les scènes
+            // Faire persister cet objet entre les scènes
             if (persistBetweenScenes)
             {
                 DontDestroyOnLoad(gameObject);
@@ -44,12 +44,12 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            // Si un AudioManager existe déjà, ne pas créer de doublon
+           
             Destroy(gameObject);
             return;
         }
 
-        // Créer les AudioSources
+        // Créer  AudioSources
         musicSource = gameObject.AddComponent<AudioSource>();
         sfxSource = gameObject.AddComponent<AudioSource>();
 
@@ -62,7 +62,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        // ⭐ La musique ne redémarre que si elle n'est pas déjà en train de jouer
+      
         if (!musicSource.isPlaying)
         {
             PlayNextMusic();
@@ -73,7 +73,6 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        // Passer à la musique suivante quand l'actuelle finit
         if (!musicSource.isPlaying && backgroundMusicPlaylist.Length > 0)
         {
             PlayNextMusic();
@@ -88,7 +87,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        // Choisir une musique aléatoire
+        // Choisir  musique aléatoire
         int randomIndex = Random.Range(0, backgroundMusicPlaylist.Length);
 
         // S'assurer qu'on ne joue pas la même musique deux fois d'affilée
@@ -118,7 +117,7 @@ public class AudioManager : MonoBehaviour
         musicSource.Stop();
     }
 
-    // ⭐ NOUVEAU : Reprendre la musique si elle a été stoppée
+    //  Reprendre la musique si elle a été stoppée
     public void ResumeBackgroundMusic()
     {
         if (!musicSource.isPlaying && musicSource.clip != null)

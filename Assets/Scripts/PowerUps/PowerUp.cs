@@ -34,14 +34,14 @@ public abstract class PowerUp : MonoBehaviour
 
         isActive = true;
 
-        // Effet visuel
+        
         if (pickupEffect != null)
         {
             GameObject effect = Instantiate(pickupEffect, transform.position, Quaternion.identity);
             Destroy(effect, 2f);
         }
 
-        // ⭐ AJOUTÉ : Jouer le son de pick-up
+        //  Jouer le son de pick-up
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayPowerUpPickup();

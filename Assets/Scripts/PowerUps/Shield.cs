@@ -34,7 +34,7 @@ public class Shield : PowerUp
     {
         Debug.Log("Shield a bloqué une attaque !");
 
-        // ⭐ Jouer le son du shield
+        //  son du shield
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayShieldBlock();

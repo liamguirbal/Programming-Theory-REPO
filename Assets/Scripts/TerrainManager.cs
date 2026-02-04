@@ -96,7 +96,7 @@ public class TerrainManager : MonoBehaviour
         GameObject prefabToSpawn = null;
         Vector3 spawnOffset = Vector3.zero;
 
-        // PRIORITÉ 1 : Transitions AVANT la route
+    
         if (transitionsBeforeRemaining > 0)
         {
             if (useTransitions && transitionPrefab != null)
@@ -110,7 +110,7 @@ public class TerrainManager : MonoBehaviour
             }
             transitionsBeforeRemaining--;
         }
-        // PRIORITÉ 2 : Transitions APRÈS la route
+       
         else if (transitionsAfterRemaining > 0)
         {
             if (useTransitions && transitionPrefab != null)
@@ -124,7 +124,7 @@ public class TerrainManager : MonoBehaviour
             }
             transitionsAfterRemaining--;
         }
-        // PRIORITÉ 3 : Continuer la route en cours
+      
         else if (isSpawningRoad && roadLinesRemaining > 0)
         {
             prefabToSpawn = roadPrefab;
@@ -137,7 +137,7 @@ public class TerrainManager : MonoBehaviour
                 transitionsAfterRemaining = transitionsAfterRoad;
             }
         }
-        // PRIORITÉ 4 : Décider si on commence une nouvelle route OU terrain normal
+        
         else
         {
             if (terrainsSpawned < safeStartTerrains)
@@ -187,7 +187,7 @@ public class TerrainManager : MonoBehaviour
             prefabToSpawn = terrainPrefab;
         }
 
-        // Spawner le terrain avec l'offset approprié
+        
         GameObject go = Instantiate(prefabToSpawn, currentSpawnPos + spawnOffset, Quaternion.identity);
         activeTerrains.Enqueue(go);
         currentSpawnPos.z += plotSize;

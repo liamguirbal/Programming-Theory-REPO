@@ -3,14 +3,14 @@ using UnityEngine;
 public class MovingEnemy : MonoBehaviour
 {
     public float speed = 3f;
-    public int direction = 1; // 1 = avant, -1 = arrière
+    public int direction = 1; 
     public bool moveOnZAxis = true; // true = se déplace sur Z, false = sur X
 
-    // Limites pour l'axe Z
+   
     public float minZ = -30f;
     public float maxZ = 30f;
 
-    // Limites pour l'axe X
+   
     public float minX = -30f;
     public float maxX = 30f;
 

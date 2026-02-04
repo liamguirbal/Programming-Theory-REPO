@@ -41,7 +41,7 @@ public class ScoreManager : MonoBehaviour
         int pointsToAdd = points * scoreMultiplier;
         currentScore += pointsToAdd;
 
-        // ⭐ Jouer le son de points
+        
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayScorePoint();
@@ -60,7 +60,7 @@ public class ScoreManager : MonoBehaviour
     }
 
 
-    // Définir le multiplicateur
+ 
     public void SetMultiplier(int multiplier)
     {
         scoreMultiplier = multiplier;
@@ -68,25 +68,25 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreUI();
     }
 
-    // ⭐ AJOUTÉ : Obtenir le score actuel
+
     public int GetCurrentScore()
     {
         return currentScore;
     }
 
-    // ⭐ AJOUTÉ : Obtenir le meilleur score
+ 
     public int GetBestScore()
     {
         return bestScore;
     }
 
-    // ⭐ AJOUTÉ : Alias pour GetCurrentScore (compatibilité)
+ 
     public int GetScore()
     {
         return currentScore;
     }
 
-    // ⭐ AJOUTÉ : Réinitialiser le score (pour nouvelle partie)
+   
     public void ResetScore()
     {
         currentScore = 0;

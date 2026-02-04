@@ -25,7 +25,7 @@ public class SpeedBoost : PowerUp
 
     protected override void RemoveEffect()
     {
-        // ⭐ FIX : Vérifier que le controller existe toujours
+      
         if (controller != null)
         {
             controller.moveSpeed = originalSpeed;
@@ -35,10 +35,10 @@ public class SpeedBoost : PowerUp
         ShowIndicator(false);
     }
 
-    // ⭐ AJOUTÉ : S'assurer que RemoveEffect est appelé avant destruction
+  
     private void OnDestroy()
     {
-        // Si le GameObject est détruit, remettre la vitesse normale
+     
         if (controller != null && controller.moveSpeed != originalSpeed)
         {
             controller.moveSpeed = originalSpeed;

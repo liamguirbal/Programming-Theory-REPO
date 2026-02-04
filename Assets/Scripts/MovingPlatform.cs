@@ -9,10 +9,10 @@ public class MovingPlatform : MonoBehaviour
 
     void Update()
     {
-        // Déplacer la plateforme
+     
         transform.Translate(Vector3.right * direction * speed * Time.deltaTime, Space.World);
 
-        // Téléporter de l'autre côté
+       
         if (direction > 0 && transform.position.x > maxX)
         {
             transform.position = new Vector3(minX, transform.position.y, transform.position.z);
@@ -23,7 +23,7 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    // Faire suivre le joueur avec la plateforme
+    
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))

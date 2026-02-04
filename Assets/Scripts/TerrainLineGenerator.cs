@@ -110,7 +110,7 @@ public class TerrainLineGenerator : MonoBehaviour
             SpawnStaticObstacles();
         }
 
-        // Les plateformes seulement pour River
+        // Les plateformes seulement pour River(pas fait pour l'instant)
         if (terrainType == TerrainType.River && platformPrefabs.Length > 0)
         {
             SpawnPlatforms();
@@ -251,7 +251,7 @@ public class TerrainLineGenerator : MonoBehaviour
         }
     }
 
-    // ⭐ NOUVEAU : Spawner un power-up aléatoire
+    // Spawner un power-up aléatoire
     void SpawnPowerUp()
     {
         // Si pas de power-ups configurés, on sort
@@ -259,9 +259,9 @@ public class TerrainLineGenerator : MonoBehaviour
 
         // Test de chance de spawn
         float randomChance = UnityEngine.Random.Range(0f, 100f);
-        if (randomChance > powerUpSpawnChance) return; // Pas de spawn cette fois
+        if (randomChance > powerUpSpawnChance) return; 
 
-        // Choisir un power-up aléatoire
+       
         int randomIndex = UnityEngine.Random.Range(0, powerUpPrefabs.Length);
         GameObject powerUpPrefab = powerUpPrefabs[randomIndex];
 
@@ -269,13 +269,13 @@ public class TerrainLineGenerator : MonoBehaviour
         int halfWidth = terrainWidth / 2;
         float randomX = UnityEngine.Random.Range(-halfWidth + 1, halfWidth);
 
-        // Pour les routes, spawner sur la route (zone de passage du joueur)
+        // Pour les routes, spawner sur la route 
         if (terrainType == TerrainType.Road)
         {
             randomX = UnityEngine.Random.Range(roadStartX + 1, roadStartX + roadWidth - 1);
         }
 
-        // Position de spawn
+
         Vector3 spawnPosition = transform.position + new Vector3(randomX, powerUpHeight, 0);
 
         // Spawner le power-up

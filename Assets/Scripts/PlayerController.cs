@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
                 Destroy(effect, 2f);
             }
 
-            // ⭐ Jouer le son de mort
+            // Jouer le son de mort
             if (AudioManager.Instance != null)
             {
                 AudioManager.Instance.PlayDeath();
