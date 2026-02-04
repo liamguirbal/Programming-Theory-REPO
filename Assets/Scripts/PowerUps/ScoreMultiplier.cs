@@ -10,12 +10,15 @@ public class ScoreMultiplier : PowerUp
 
     protected override void ApplyEffect()
     {
-        // ⭐ CORRIGÉ : FindFirstObjectByType au lieu de FindObjectOfType
         ScoreManager scoreManager = FindFirstObjectByType<ScoreManager>();
         if (scoreManager != null)
         {
             scoreManager.SetMultiplier(multiplier);
             Debug.Log($"Multiplicateur de score activé : x{multiplier}");
+        }
+        else
+        {
+            Debug.LogError("ScoreManager introuvable !");
         }
 
         ShowIndicator(true);
@@ -23,15 +26,28 @@ public class ScoreMultiplier : PowerUp
 
     protected override void RemoveEffect()
     {
-        // ⭐ CORRIGÉ
+        ScoreManager scoreManager = FindFirstObjectByType<ScoreManager>();
+        if (scoreManager != null)
+        {
+            scoreManager.SetMultiplier(1); // ⭐ Remettre à x1
+            Debug.Log("Multiplicateur de score désactivé (x1)");
+        }
+
+        ShowIndicator(false);
+    }
+
+    // ⭐ S'assurer que RemoveEffect est appelé même si le GameObject est détruit
+    private void OnDestroy()
+    {
+        // Remettre le multiplicateur à 1
         ScoreManager scoreManager = FindFirstObjectByType<ScoreManager>();
         if (scoreManager != null)
         {
             scoreManager.SetMultiplier(1);
-            Debug.Log("Multiplicateur de score désactivé");
+            Debug.Log("ScoreMultiplier détruit, multiplicateur remis à x1");
         }
 
-        ShowIndicator(false);
+        FindAndDeactivateIndicator();
     }
 
     private void ShowIndicator(bool show)
@@ -42,12 +58,28 @@ public class ScoreMultiplier : PowerUp
             if (indicatorTransform != null)
             {
                 indicator = indicatorTransform.gameObject;
+                Debug.Log("MultiplierIndicator trouvé !");
             }
         }
 
         if (indicator != null)
         {
             indicator.SetActive(show);
+            Debug.Log($"MultiplierIndicator {(show ? "activé" : "désactivé")} !");
+        }
+    }
+
+    // ⭐ Désactiver l'indicateur avec vérification
+    private void FindAndDeactivateIndicator()
+    {
+        if (player != null)
+        {
+            Transform indicatorTransform = player.transform.Find(indicatorName);
+            if (indicatorTransform != null)
+            {
+                indicatorTransform.gameObject.SetActive(false);
+                Debug.Log("MultiplierIndicator désactivé !");
+            }
         }
     }
 }

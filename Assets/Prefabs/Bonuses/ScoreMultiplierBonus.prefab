@@ -126,9 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348b56f16f85ebe42a7902f3adf32650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreMultiplier
-  duration: 5
+  duration: 7.5
   pickupEffect: {fileID: 1025285306637258, guid: d8f0099df63275647a8bcf646df1ca00, type: 3}
   multiplier: 2
+  indicatorName: MultiplierIndicator
 --- !u!114 &635542180212637309
 MonoBehaviour:
   m_ObjectHideFlags: 0
